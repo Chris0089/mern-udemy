@@ -10,6 +10,9 @@ const posts = require('./routes/api/posts');
 const app = express();
 const database = require('./config/keys').mongoURL;
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -24,6 +27,7 @@ app.get('/',
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
+
 
 const port = process.env.PORT || 5000;
 
